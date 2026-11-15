@@ -1,0 +1,11 @@
+# Starts the wired-Ethernet helper once Android has finished booting.
+# See /system/etc/usbeth-ecm.sh for what it does and why.
+service usbeth_ecm /system/bin/sh /system/etc/usbeth-ecm.sh
+    class late_start
+    user root
+    group root
+    seclabel u:r:su:s0
+    disabled
+
+on property:sys.boot_completed=1
+    start usbeth_ecm
